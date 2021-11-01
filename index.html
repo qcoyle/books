@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Books</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta property="og:image" content="./public/preview.png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://quinncoyle.com/default-styles.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js" defer></script>
+    <script type="module" src="./app.js" defer></script>
+    <link href="./style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="app">
+        <table style="width:100%">
+            <thead>
+                <tr>
+                    <th v-for="col in columns" v-on:click="sortTable(col)">{{col}}
+                        <div class="arrow" v-if="col == sortColumn" v-bind:class="[ascending ? 'arrow_up' : 'arrow_down']"></div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="row in get_rows()">
+                    <td v-for="col in columns">{{row[col]}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="pagination">
+            <div class="number" v-for="i in num_pages()" v-bind:class="[i == currentPage ? 'active' : '']" v-on:click="change_page(i)">{{i}}</div>
+        </div>
+    </div>
+</body>
