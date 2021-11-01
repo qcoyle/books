@@ -48,7 +48,7 @@ const table = new Vue({
         }
     },
     async mounted() {
-        const url = "https://y3lypa1pyb.herokuapp.com//books";
+        const url = "https://y3lypa1pyb.herokuapp.com/books";
         const response = await fetch(url);
         if (response.ok) {
             const jsonResponse = await response.json();
