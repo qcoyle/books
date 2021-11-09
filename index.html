@@ -11,10 +11,16 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js" defer></script>
     <script type="module" src="./app.js" defer></script>
     <link href="./style.css" rel="stylesheet">
+    <script src="https://unpkg.com/vue-ui-preloader"></script>
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/vue-ui-preloader/dist/loader.css">
 </head>
 
 <body>
     <div id="app">
+        <div v-if="loading">
+            <h1 style="margin:0; position:absolute; top:30%; left:50%; transform:translate(-50%, -50%);">Loading...</h1>
+            <loader object="lightblue" color1="purple" color2="grey" size="5" speed="1.5" bg="#343a40" objectbg="#999793" opacity="80" name="circular"></loader>
+        </div>
         <table style="width:100%">
             <thead>
                 <tr>

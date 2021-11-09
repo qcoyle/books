@@ -1,11 +1,17 @@
+Vue.use(loader);
+
 const table = new Vue({
     el: '#app',
+    components: {
+        loader: loader
+    },
     data: {
         currentPage: 1,
         elementsPerPage: 20,
         ascending: false,
         sortColumn: '',
-        rows: []
+        rows: [],
+        loading: false
     },
     methods: {
         "sortTable": function sortTable(col) {
@@ -49,10 +55,12 @@ const table = new Vue({
     },
     async mounted() {
         const url = "https://y3lypa1pyb.herokuapp.com/books";
+        this.loading = true;
         const response = await fetch(url);
         if (response.ok) {
             const jsonResponse = await response.json();
             this.rows = jsonResponse;
+            this.loading = false;
         }
         // this.data.rows = [...resp.data].slice(0, 10);
     }
