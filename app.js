@@ -14,6 +14,7 @@ const table = new Vue({
         loading: false
     },
     methods: {
+        // These allow for sorting on the table
         "sortTable": function sortTable(col) {
             if (this.sortColumn === col) {
                 this.ascending = !this.ascending;
@@ -56,12 +57,16 @@ const table = new Vue({
     async mounted() {
         const url = "https://y3lypa1pyb.herokuapp.com/books";
         this.loading = true;
-        const response = await fetch(url);
-        if (response.ok) {
-            const jsonResponse = await response.json();
-            this.rows = jsonResponse;
-            this.loading = false;
+
+        try {
+            const response = await fetch(url);
+            if (response.ok) {
+                const jsonResponse = await response.json();
+                this.rows = jsonResponse;
+                this.loading = false;
+            }
+        } catch (error) {
+            console.log(error);
         }
-        // this.data.rows = [...resp.data].slice(0, 10);
     }
 });
