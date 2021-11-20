@@ -10,12 +10,46 @@
     <link href="https://quinncoyle.com/static/default-writing-styles.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js" defer></script>
     <script type="module" src="./app.js" defer></script>
+    <script type="module" src="./add-book.js" defer></script>
     <link href="./style.css" rel="stylesheet">
     <script src="https://unpkg.com/vue-ui-preloader"></script>
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/vue-ui-preloader/dist/loader.css">
 </head>
 
 <body>
+    <div id="add-book">
+        <form @submit="submitForm" style="float:left;margin-left:20px;">
+            <h5>Add a book</h5>
+            <div style="float:left;margin-right:20px;">
+                <label for="title">Title:</label>
+                <input type="text" id="title" v-model.trim="title">
+            </div>
+
+            <div style="float:left; margin-right:20px;">
+                <label for="author">Author:</label>
+                <input type="text" id="author" v-model.trim="author">
+            </div>
+
+            <div style="float:left; margin-right:20px;">
+                <label for="readDate">Read Date:</label>
+                <input type="text" id="readDate" v-model.trim="readDate" placeholder="YYYY-MM-DD">
+            </div>
+
+            <div style="float:left; margin-right:20px;">
+                <label for="audiobook">Audiobook?</label>
+                <input type="checkbox" v-model="audiobook">
+            </div>
+
+            <div style="float:left; margin-right:20px;">
+                <label for="password">Password:</label>
+                <input type="text" id="password" v-model.trim="password">
+            </div>
+
+            <div style="float:left; margin-right:20px; margin-top:30px">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
     <div id="app">
         <div v-if="loading">
             <h1 style="margin:0; position:absolute; top:30%; left:50%; transform:translate(-50%, -50%);">Loading...</h1>
