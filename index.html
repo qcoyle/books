@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://quinncoyle.com/static/default-writing-styles.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script type="module" src="./app.js" defer></script>
     <script type="module" src="./add-book.js" defer></script>
     <link href="./style.css" rel="stylesheet">
@@ -17,8 +18,32 @@
 </head>
 
 <body>
+    <div id="app">
+        <div v-if="loading">
+            <h1 style="margin:0; position:absolute; top:30%; left:50%; transform:translate(-50%, -50%);">Loading...</h1>
+            <loader object="lightblue" color1="purple" color2="grey" size="5" speed="1.5" bg="#343a40" objectbg="#999793" opacity="80" name="circular"></loader>
+        </div>
+        <table style="width:100%">
+            <thead>
+                <tr>
+                    <th v-for="col in columns" v-on:click="sortTable(col)">{{col}}
+                        <div class="arrow" v-if="col == sortColumn" v-bind:class="[ascending ? 'arrow_up' : 'arrow_down']"></div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="row in get_rows()">
+                    <td v-for="col in columns">{{row[col]}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="pagination">
+            <div class="number" v-for="i in num_pages()" v-bind:class="[i == currentPage ? 'active' : '']" v-on:click="change_page(i)">{{i}}</div>
+        </div>
+    </div>
+
     <div id="add-book">
-        <form @submit="submitForm" style="float:left;margin-left:20px;">
+        <form style="float:left;margin-left:20px;">
             <h5>Add a book</h5>
             <div style="float:left;margin-right:20px;">
                 <label for="title">Title:</label>
@@ -42,35 +67,12 @@
 
             <div style="float:left; margin-right:20px;">
                 <label for="password">Password:</label>
-                <input type="text" id="password" v-model.trim="password">
+                <input type="password" id="password" v-model.trim="password">
             </div>
 
             <div style="float:left; margin-right:20px; margin-top:30px">
-                <button type="submit">Submit</button>
+                <button type="submit" v-bind:disabled="!formIsValid" v-on:click="submitForm($event)">Submit</button>
             </div>
         </form>
-    </div>
-    <div id="app">
-        <div v-if="loading">
-            <h1 style="margin:0; position:absolute; top:30%; left:50%; transform:translate(-50%, -50%);">Loading...</h1>
-            <loader object="lightblue" color1="purple" color2="grey" size="5" speed="1.5" bg="#343a40" objectbg="#999793" opacity="80" name="circular"></loader>
-        </div>
-        <table style="width:100%">
-            <thead>
-                <tr>
-                    <th v-for="col in columns" v-on:click="sortTable(col)">{{col}}
-                        <div class="arrow" v-if="col == sortColumn" v-bind:class="[ascending ? 'arrow_up' : 'arrow_down']"></div>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="row in get_rows()">
-                    <td v-for="col in columns">{{row[col]}}</td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="pagination">
-            <div class="number" v-for="i in num_pages()" v-bind:class="[i == currentPage ? 'active' : '']" v-on:click="change_page(i)">{{i}}</div>
-        </div>
     </div>
 </body>
