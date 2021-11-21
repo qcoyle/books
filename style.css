@@ -114,6 +114,7 @@ table tbody tr:nth-child(2n) td {
     background: #717699;
 }
 
-[v-cloak] {
-    display: none;
+#add-book {
+    margin-top: 20px;
+    margin-bottom: 20px;
 }

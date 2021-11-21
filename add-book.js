@@ -5,7 +5,8 @@ const app = new Vue({
         author: "", // Object for multiple authors, separated by 1, 2, 3, etc.
         readDate: "",
         audiobook: false,
-        password: ""
+        password: "",
+        initialWait: true
     },
     methods: {
         submitForm: async function(event) {
@@ -54,6 +55,9 @@ const app = new Vue({
     computed: {
         formIsValid: function() {
             return this.title && this.author && this.readDate && this.password;
-        }
+        },
+
+
+
     }
 })
