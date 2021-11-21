@@ -6,7 +6,11 @@ const app = new Vue({
         readDate: "",
         audiobook: false,
         password: "",
-        initialWait: true
+        author2: "",
+        author3: "",
+        author4: "",
+        author5: "",
+        author6: ""
     },
     methods: {
         submitForm: async function(event) {
@@ -15,12 +19,33 @@ const app = new Vue({
             // This password validation is NOT secure. For demo purposes only
             if (password.value === "bookmark") {
                 if (this.title && this.author && this.readDate) {
+
+                    // Create authors object
+                    let authorObject = {
+                        1: this.author
+                    }
+
+                    // Look for other authors
+                    let i = 1;
+                    while (i < 100) {
+                        i++;
+                        console.log(i);
+                        let newAuthor;
+
+                        try {
+                            newAuthor = document.getElementById(`author${i.toString()}`).value;
+                        } catch (error) {
+                            console.log("No more authors");
+                            break;
+                        }
+
+                        authorObject[i] = newAuthor; // Add to the author object
+                    }
+
                     // Create the new book object
                     const book = JSON.stringify({
                         title: this.title,
-                        author: {
-                            1: this.author
-                        },
+                        author: authorObject,
                         read_date: this.readDate,
                         audiobook: this.audiobook
                     });
@@ -43,16 +68,35 @@ const app = new Vue({
                             window.alert("ERROR: Request failed");
                         }
 
-
                     } catch (error) {
                         console.log(error);
                     }
+
                 } else {
                     window.alert("ERROR: Please fill out all fields");
                 }
             } else {
                 window.alert("ERROR: Invalid password");
             }
+        },
+        addAuthor: function(event) {
+            event.preventDefault();
+            displayAnotherAuthor(document);
         }
     }
 })
+
+// Add authors by clicking button
+let authorsCounter = 1;
+const displayAnotherAuthor = document => {
+    authorsCounter++;
+    let parentNode = document.querySelector("#authors");
+    console.log(parentNode);
+    let input = document.createElement("input");
+    input.type = "text";
+    input.requiredType = "text";
+    input.id = `author${authorsCounter}`;
+    input.placeholder = `Enter author ${authorsCounter}`;
+    input.style = "margin-top: 5px"
+    parentNode.appendChild(input);
+}
