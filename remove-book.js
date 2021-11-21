@@ -10,22 +10,25 @@ const app = new Vue({
 
             // This password validation is NOT secure. For demo purposes only
             if (deletePassword.value === "bookmark") {
-                const endpoint = `https://y3lypa1pyb.herokuapp.com/books/${this.id}`;
+                if (this.id) {
+                    const endpoint = `https://y3lypa1pyb.herokuapp.com/books/${this.id}`;
+                    try {
+                        const response = await fetch(endpoint, {
+                            method: "DELETE"
+                        });
 
-                try {
-                    const response = await fetch(endpoint, {
-                        method: "DELETE"
-                    });
+                        if (response.ok) {
+                            window.alert("Book Deleted!");
+                            location.reload(true); // Hard reload from server
+                        } else {
+                            window.alert("ERROR: Request failed");
+                        }
 
-                    if (response.ok) {
-                        window.alert("Book Deleted!");
-                        location.reload(true); // Hard reload from server
-                    } else {
-                        window.alert("ERROR: Request failed");
+                    } catch (error) {
+                        console.log(error);
                     }
-
-                } catch (error) {
-                    console.log(error);
+                } else {
+                    window.alert("ERROR: Please fill out all fields");
                 }
             } else {
                 window.alert("ERROR: Invalid password");
