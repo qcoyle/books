@@ -10,45 +10,45 @@ const app = new Vue({
     methods: {
         submitForm: async function(event) {
             console.log("submitting form");
+            event.preventDefault(); // Don't reload page yet
 
             // This password validation is NOT secure. For demo purposes only
             if (password.value === "bookmark") {
 
                 // Create the new book object
-                const book = [JSON.stringify({
+                const book = JSON.stringify({
                     title: this.title,
                     author: {
-                        "1": this.author
+                        1: this.author
                     },
-                    "read-date": this.readDate,
+                    read_date: this.readDate,
                     audiobook: this.audiobook
-                })];
+                });
 
                 console.log(book);
                 try {
                     const response = await fetch("https://y3lypa1pyb.herokuapp.com/books", {
                         method: "POST",
-                        mode: 'no-cors',
                         body: book,
                         headers: {
-                            'Content-Type': 'application/json'
+                            "Content-type": "application/json"
                         }
-                    })
+                    });
 
+                    console.log(await response.json());
                     if (response.ok) {
-                        const jsonResponse = await response.json();
-                        console.log(jsonResponse);
+                        window.alert("Book Added!");
+                        location.reload(true); // Hard reload from server
+                    } else {
+                        window.alert("ERROR: Request failed");
                     }
 
-                    console.log(response);
-                    window.alert("Book Added!");
-                    event.preventDefault();
+
                 } catch (error) {
                     console.log(error);
                 }
             } else {
-                event.preventDefault(); // Prevent the form from resetting
-                window.alert("Invalid password");
+                window.alert("ERROR: Invalid password");
             }
         }
     },
