@@ -6,6 +6,7 @@
     <title>Books</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://quinncoyle.com/default-styles.css" rel="stylesheet">
     <link href="https://quinncoyle.com/static/default-writing-styles.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -69,7 +70,7 @@
             </div>
 
             <div style="float:left; margin-right:20px; margin-top:30px">
-                <button type="submit" v-bind:disabled="!formIsValid" v-on:click="submitForm($event)">Submit</button>
+                <button class="btn btn-success" type="submit" v-bind:disabled="!formIsValid" v-on:click="submitForm($event)">Submit</button>
             </div>
         </form>
     </div>
@@ -87,8 +88,16 @@
             </div>
 
             <div style="float:left; margin-right:20px; margin-top:30px">
-                <button type="submit" v-bind:disabled="!formIsValid" v-on:click="submitForm($event)">Submit</button>
+                <button class="btn btn-success" type="submit" v-bind:disabled="!formIsValid" v-on:click="submitForm($event)">Submit</button>
             </div>
         </form>
+    </div>
+    <br>
+    <br>
+    <div class="fixed-bottom">
+        <hr>
+        <footer class="bg-dark">
+            <a href="https://github.com/qcoyle/reading-list" target=”_blank”>Site Code</a>
+        </footer>
     </div>
 </body>
