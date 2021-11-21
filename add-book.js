@@ -9,7 +9,6 @@ const app = new Vue({
     },
     methods: {
         submitForm: async function(event) {
-            console.log("submitting form");
             event.preventDefault(); // Don't reload page yet
 
             // This password validation is NOT secure. For demo purposes only

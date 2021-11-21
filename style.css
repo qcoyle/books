@@ -113,3 +113,7 @@ table tbody tr:nth-child(2n) td {
 .number.active {
     background: #717699;
 }
+
+[v-cloak] {
+    display: none;
+}
