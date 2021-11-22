@@ -7,7 +7,7 @@ const table = new Vue({
     },
     data: {
         currentPage: 1,
-        elementsPerPage: 20,
+        elementsPerPage: 10,
         ascending: false,
         sortColumn: '',
         rows: [],
