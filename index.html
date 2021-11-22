@@ -41,66 +41,66 @@
             <div class="number" v-for="i in num_pages()" v-bind:class="[i == currentPage ? 'active' : '']" v-on:click="change_page(i)">{{i}}</div>
         </div>
     </div>
-    <div id="add-book">
-        <form style="float:left;margin-left:20px;">
+    <div id="add-book" style="margin-top: 20px;">
+        <form class="inputs">
             <h5>Add a book</h5>
-            <div style="float:left;margin-right:20px;">
+            <div class="inputs">
                 <label for="title">Title:</label>
                 <input type="text" id="title" v-model.trim="title">
             </div>
 
-            <div id="authors" style="float:left; margin-right:20px;">
+            <div class="inputs" id="authors">
                 <label for="author">Author:</label>
                 <input type="text" id="author" v-model.trim="author">
             </div>
 
-            <div style="float:left; margin-right:20px;">
+            <div class="inputs">
                 <button type="button" class="btn btn-light" style="margin-top:25px" v-on:click="addAuthor($event)">Add Author</button>
             </div>
 
-            <div style="float:left; margin-right:20px;">
+            <div class="inputs">
                 <label for="readDate">Read Date:</label>
                 <input type="text" id="readDate" v-model.trim="readDate" placeholder="YYYY-MM-DD">
             </div>
 
-            <div style="float:left; margin-right:20px;">
+            <div class="inputs">
                 <label for="audiobook">Audiobook?</label>
                 <input type="checkbox" v-model="audiobook">
             </div>
 
-            <div style="float:left; margin-right:20px;">
+            <div class="inputs">
                 <label for="password">Password:</label>
                 <input type="password" id="password" v-model.trim="password">
             </div>
 
-            <div style="float:left; margin-right:20px; margin-top:25px">
+            <div style="float:left; margin-top:25px">
                 <button class="btn btn-success" type="submit" v-on:click="submitForm($event)">Submit</button>
             </div>
         </form>
     </div>
-    <div id="remove-book">
-        <form style="float:left;margin-left:20px;">
+    <div id="remove-book" style="margin-top: 20px;">
+        <form class="inputs">
             <h5>Remove a book</h5>
-            <div style="float:left;margin-right:20px;">
+            <div class="inputs">
                 <label for="_id">_id:</label>
                 <input type="text" id="_id" v-model.trim="id">
             </div>
 
-            <div style="float:left; margin-right:20px;">
-                <label for="deletePassword">Password:</label>
+            <div class="inputs">
+                <label for="deletePassword ">Password:</label>
                 <input type="password" id="deletePassword" v-model.trim="deletePassword">
             </div>
 
-            <div style="float:left; margin-right:20px; margin-top:25px">
+            <div style="float:left; margin-top:25px">
                 <button class="btn btn-success" type="submit" v-on:click="submitForm($event)">Submit</button>
             </div>
         </form>
     </div>
     <br>
     <br>
-    <div class="fixed-bottom">
+    <div class="fixed-bottom ">
         <hr>
-        <footer class="bg-dark">
+        <footer class="bg-dark ">
             <a href="https://github.com/qcoyle/reading-list" target=”_blank”>Site Code</a>
         </footer>
     </div>

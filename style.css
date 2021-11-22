@@ -131,3 +131,28 @@ body {
 footer {
     text-align: center;
 }
+
+form {
+    float: left;
+    margin-left: 20px;
+}
+
+.inputs {
+    float: left;
+    margin-right: 15px;
+}
+
+.inputs form {
+    margin-right: 0px;
+}
+
+@media only screen and (max-width: 1160px) {
+    .inputs {
+        display: grid;
+        width: 80%;
+    }
+    .inputs input,
+    .inputs button {
+        margin-bottom: 15px;
+    }
+}
